@@ -33,6 +33,9 @@ if d.get('aggiornata') != v.get('aggiornata') or not D.match(str(d.get('aggiorna
 if not str(d.get('rev', '')).startswith(str(d.get('aggiornata', '')).replace('-', '')): e('il progressivo non comincia con la data')
 if v.get('n') != len(d.get('ROWS', [])): e('numero di sentenze in versione.json non corrisponde')
 L, G, R = d.get('LABEL', {}), d.get('GROUPS', []), d.get('ROWS', [])
+if not isinstance(L, dict) or not L or len(L) > 200: e('argomenti assenti o più di 200')
+if not isinstance(G, list) or not G or len(G) > 30 or any(not (isinstance(g, list) and len(g) == 2 and S(g[0], 80) and g[0] and isinstance(g[1], list) and g[1]) for g in G): e('gruppi non validi (al massimo 30, ciascuno con nome e argomenti)')
+if not isinstance(R, list) or not R or len(R) > 20000: e('elenco delle sentenze assente o oltre 20000')
 for k, x in L.items():
     if not re.match(r'^[a-z0-9-]{1,40}$', k) or not S(x, 80) or not x: e('argomento non valido ' + k)
 seen = [c for g in G for c in g[1]]
@@ -48,13 +51,25 @@ for i, r in enumerate(R):
     ecli.add(w)
     c = r.get('c') or []
     if not c or len(c) > 12 or any(x not in L for x in c) or len(set(c)) != len(c): e('argomenti non validi ' + w)
-    if any(x not in L for x in r.get('c2', [])): e('vedi anche non valido ' + w)
+    c2 = r.get('c2', [])
+    if not isinstance(c2, list) or len(c2) > 30 or any(x not in L for x in c2) or len(set(c2)) != len(c2): e('vedi anche non valido ' + w)
+    if 'se' in r and not S(r['se'], 80): e('sede troppo lunga ' + w)
+    if 'z' in r and not S(r['z'], 40): e('sezione troppo lunga ' + w)
+    if 'lt' in r and not S(r['lt'], 400): e('titolo del commento troppo lungo ' + w)
+    if 'nr' in r and not (isinstance(r['nr'], list) and len(r['nr']) <= 80 and all(S(x, 400) for x in r['nr'])): e('norme non valide (al massimo 80, ciascuna entro 400 caratteri) ' + w)
     for x in c:
         if not (S(r.get('m', {}).get(x), 4000) and r['m'][x] and S(r.get('t', {}).get(x), 400) and r['t'][x]): e(f'massima o titolo mancante {w} {x}')
     for f in ('lp', 'ls'):
         if f in r and not (S(r[f], 600) and UL.match(r[f])): e(f'collegamento {f} non valido ' + w)
     if 'ag' in r and not D.match(str(r['ag'])): e('data di inserimento non valida ' + w)
     if 'no' in r and not S(r['no'], 6000): e('nota troppo lunga ' + w)
+    # i limiti replicano idgValida della webapp: un campo che la webapp rifiuta scarterebbe l'intero aggiornamento
+    # dalla v1.6 (regola allineata a indigesto.py pubblica nella v1.7): tipi della nota e orientamento non uniforme (la webapp 1.6 rifiuta l'intero aggiornamento se non sono validi)
+    if 'nt' in r and not (isinstance(r['nt'], list) and len(r['nt']) <= 3 and len(set(r['nt'])) == len(r['nt']) and all(t in ('aggiornamento', 'collegate', 'contrasto') for t in r['nt'])): e('nt non valido ' + w)
+    if 'kon' in r and not isinstance(r['kon'], bool): e('kon non booleano ' + w)
+    if 'nt' in r and 'kon' in r and r['kon'] != ('contrasto' in r['nt']): e('kon e nt non coincidono ' + w)
+    if r.get('no') and ('nt' not in r or 'kon' not in r): e('nota senza nt o kon ' + w)
+    if not r.get('no') and ('nt' in r or 'kon' in r): e('nt o kon su una scheda senza nota ' + w)
 if len(sys.argv) > 1:
     prev = json.load(open(sys.argv[1], encoding='utf-8'))
     if d.get('rev', 0) <= prev['rev']: e(f'il progressivo {d.get("rev")} non supera quello pubblicato {prev["rev"]}')
