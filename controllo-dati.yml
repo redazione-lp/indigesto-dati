@@ -1,0 +1,33 @@
+name: Controllo dati
+# Verifica dati.json, dati-cost.json, testi/ e versione.json a ogni pubblicazione (commit o richiesta di modifica).
+# Usa controlla_dati.py del repository e il segreto INDIGESTO_CHIAVE.
+on:
+  push:
+    branches: [main]
+    paths: ["dati.json", "dati-cost.json", "versione.json", "testi/**"]
+  pull_request:
+    paths: ["dati.json", "dati-cost.json", "versione.json", "testi/**"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  controllo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Versione pubblicata in precedenza
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            git show "origin/${{ github.base_ref }}:versione.json" > /tmp/precedente.json
+          elif [ "${{ github.event_name }}" = "push" ] && git cat-file -e "${{ github.event.before }}:versione.json" 2>/dev/null; then
+            git show "${{ github.event.before }}:versione.json" > /tmp/precedente.json
+          else
+            echo "Nessun confronto con la versione precedente (avvio manuale)"; : > /tmp/precedente.json
+          fi
+      - name: Controllo
+        env:
+          INDIGESTO_CHIAVE: ${{ secrets.INDIGESTO_CHIAVE }}
+        run: |
+          if [ -s /tmp/precedente.json ]; then python3 controlla_dati.py /tmp/precedente.json; else python3 controlla_dati.py; fi
