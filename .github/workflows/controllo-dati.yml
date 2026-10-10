@@ -1,12 +1,12 @@
 name: Controllo dati
-# Verifica dati.json e versione.json a ogni pubblicazione (commit o richiesta di modifica).
+# Verifica dati.json, dati-cost.json, testi/ e versione.json a ogni pubblicazione (commit o richiesta di modifica).
 # Usa controlla_dati.py del repository e il segreto INDIGESTO_CHIAVE.
 on:
   push:
     branches: [main]
-    paths: ["dati.json", "versione.json"]
+    paths: ["dati.json", "dati-cost.json", "versione.json", "testi/**"]
   pull_request:
-    paths: ["dati.json", "versione.json"]
+    paths: ["dati.json", "dati-cost.json", "versione.json", "testi/**"]
   workflow_dispatch:
 permissions:
   contents: read
