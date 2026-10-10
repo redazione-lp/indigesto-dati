@@ -1,21 +1,21 @@
 {
  "formato": 1,
- "rev": 2026100902,
+ "rev": 2026100903,
  "aggiornata": "2026-10-09",
- "n": 402,
+ "n": 457,
  "nuove": 6,
  "app_min": "1.3",
  "app_ultima": "1.17",
  "download": "https://www.grafill.it/home/8992-2068-regolarita-edilizia-catastale-compravendite-immobiliari.html",
  "recenti": 60,
- "sha256": "4b5cd261dc82f36a4e57e7c6457fdc527a712838b243aacdd1fc405d556159c7",
+ "sha256": "137f51a11ef300a05f01ac85075e2d1913ab01415a2dc0815ca678a40c5da755",
  "cost": {
-  "rev": 2026100902,
+  "rev": 2026100903,
   "aggiornata": "2026-10-09",
   "n": 292,
-  "nuove": 292,
+  "nuove": 2,
   "ultima": "2026/163",
-  "sha256": "a7ef51b2e0cbd009d58679334ad640383eec8ea6533b8e3b23790389cf72f01e"
+  "sha256": "c2e1b845629c0f1b3966783397199ab6c0a7ca80defa253e82e61ced4731f169"
  },
  "testi": {
   "2000": {
@@ -119,29 +119,29 @@
    "sha256": "8ee492c2850bc98846801c7778b45c3972a7165e4dacb81d8789c7be39d9a2f6"
   },
   "2020": {
-   "rev": 2026100902,
-   "n": 16,
-   "sha256": "3abb5a4787a346fde25cea55a24d6de2aae05756a2a69de347054683d844125b"
+   "rev": 2026100903,
+   "n": 23,
+   "sha256": "23ad222630407a1c04136762d785abd077be9275bef3786bbff5bbaf05930859"
   },
   "2021": {
-   "rev": 2026100902,
-   "n": 40,
-   "sha256": "ffaf16efb4b48c29ff31f6481d15cafc3b61b63afb40c96644ed6752689996f5"
+   "rev": 2026100903,
+   "n": 50,
+   "sha256": "bf41b3279f0041ea8e96c4e9e997e6f89e0dc9d3dd4dc289c8623009a3825eed"
   },
   "2022": {
-   "rev": 2026100902,
-   "n": 33,
-   "sha256": "e13b2bbb3a41fedc4574e422c4e65ca16fc287fd3e59e22a3585fcb6a6054b18"
+   "rev": 2026100903,
+   "n": 47,
+   "sha256": "542b35d5bbaf606e6e85a6763a971246bd3c6a4d1b412cd6d5617d5728211ccb"
   },
   "2023": {
-   "rev": 2026100902,
-   "n": 50,
-   "sha256": "bff5954fd50e8624e5270e56c276fb80b51b2bfb4f2df1820c758d93c00910c7"
+   "rev": 2026100903,
+   "n": 61,
+   "sha256": "9eb1cdd3ce5b501139279b8dc934d61b3d95e1d7c9059ff3156c1d05ed14d009"
   },
   "2024": {
-   "rev": 2026100902,
-   "n": 57,
-   "sha256": "ad4e2197efc197ed9e8e91664f054e8e180322a4c8526e36a53dd1809468bbbf"
+   "rev": 2026100903,
+   "n": 70,
+   "sha256": "d3d30c920aa10204bb6d07c8c5b48cc5bad43ecfd893de8ace9fb477a39c26b6"
   },
   "2025": {
    "rev": 2026100903,
