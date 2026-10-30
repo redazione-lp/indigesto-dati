@@ -1,21 +1,21 @@
 {
  "formato": 1,
- "rev": 2026102901,
- "aggiornata": "2026-10-29",
- "n": 1097,
- "nuove": 16,
+ "rev": 2026103001,
+ "aggiornata": "2026-10-30",
+ "n": 1106,
+ "nuove": 9,
  "app_min": "1.3",
  "app_ultima": "1.18",
  "download": "https://www.grafill.it/home/8992-2068-regolarita-edilizia-catastale-compravendite-immobiliari.html",
  "recenti": 10,
- "sha256": "b29467afe6afb8fd17206a33c5d93fdc68ec92e9a295829ffa51762a97f76ef7",
+ "sha256": "ac73d2ef69ae1d43b618e79a2bef337dfc0aa03600594ba8e7abe570d44c01ee",
  "cost": {
-  "rev": 2026102301,
-  "aggiornata": "2026-10-23",
+  "rev": 2026103001,
+  "aggiornata": "2026-10-30",
   "n": 293,
   "nuove": 0,
-  "ultima": "2026/177",
-  "sha256": "ff8f518cd4d3835702e9056d867e09a5bd27878fb8a177adc2d7580ae08b7bb9"
+  "ultima": "2026/178",
+  "sha256": "19c6f0de5e8b88a57cfdd0ea812786644891620362c6ff89507cbe46f6e41bfd"
  },
  "testi": {
   "2000": {
@@ -149,9 +149,9 @@
    "sha256": "18262137abc414faba18f05a1aa51983cc3e33213e0820d5b583185aa019e883"
   },
   "2026": {
-   "rev": 2026102901,
-   "n": 814,
-   "sha256": "853bfa467a9f1f8c3eef48236bdfadb116fad38e74ad67869ff3f86b16395066"
+   "rev": 2026103001,
+   "n": 823,
+   "sha256": "5e073cf7e8ff0b4ac09b97920dcee9bd9ee805d8d56e715ce03b1bc686cd41a5"
   }
  }
 }
